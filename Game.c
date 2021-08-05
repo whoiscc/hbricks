@@ -110,10 +110,20 @@ static void NextTick(struct GameState *state) {
   state->ball_y += state->ball_vy;
 }
 
-struct GameBehavior Game = {
+static void Draw(const struct GameState *state, struct ViewState *view, const struct ViewBehavior *View) {
+  View->AddBall(view, state->ball_x, state->ball_y, state->config->ball_radius);
+  View->AddBracket(view,
+                   state->bracket_x,
+                   BracketTop(state) + state->config->bracket_height / 2.,
+                   state->config->bracket_width,
+                   state->config->bracket_height);
+}
+
+const struct GameBehavior Game = {
     .Init = Init,
     .Drop = Drop,
     .NextTick = NextTick,
     .IsOver = IsOver,
     .SetBracketX = SetBracketX,
+    .Draw = Draw,
 };

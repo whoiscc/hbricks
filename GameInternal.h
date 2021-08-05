@@ -5,12 +5,12 @@
 #include "Game.h"
 
 struct GameState {
+  const struct GameConfig *config;
+
   double bracket_x;
   double bracket_vx;
   double ball_x;
   double ball_y;
   double ball_vx;
   double ball_vy;
-
-  const struct GameConfig *config;
 };

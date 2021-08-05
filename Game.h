@@ -11,6 +11,7 @@
 //!
 //! The default implementation of Game is appended as well.
 #pragma once
+#include "View.h"
 
 struct GameState;
 
@@ -40,9 +41,11 @@ struct GameBehavior {
   // the x position of bracket is probably the only property that directly responds to user input
   // if user can do more thing, maybe it is better to convert it into a more general form
   void (*SetBracketX)(struct GameState *, double);
+
+  void (*Draw)(const struct GameState *, struct ViewState *, const struct ViewBehavior *);
 };
 
 // *the Game*, which probably will be the only implementation of `GameBehaviour` in the project
 // but maybe someday there will be a VeryHardGame, who knows
 #define SIZEOF_GameState 64
-extern struct GameBehavior Game;
+extern const struct GameBehavior Game;

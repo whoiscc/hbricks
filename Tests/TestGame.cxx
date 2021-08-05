@@ -3,6 +3,8 @@
 extern "C" {
 #include "Game.h"
 #include "GameInternal.h"
+#include "View.h"
+#include "Views/Log.h"
 }
 
 class GameTest : public testing::Test {
@@ -91,4 +93,23 @@ TEST_F(GameTest, BouceWallAndGetSlow) {  // NOLINT
   Game.NextTick(state);
   ASSERT_DOUBLE_EQ(state->ball_vx, old_vx);
   ASSERT_DOUBLE_EQ(state->ball_vy, old_vy);
+}
+
+TEST_F(GameTest, DrawInit) {  // NOLINT
+  std::uint8_t view_mem[SIZEOF_LogViewState];
+  ViewState *view = InitLogView(view_mem);
+  Game.Draw(state, view, &LogView);
+  ASSERT_EQ(view->n, 2);
+  for (int i = 0; i < 2; i += 1) {
+    switch (view->log[i].kind) {
+    case ViewState::Log::KIND_LogView_AddBracket: {
+      ASSERT_DOUBLE_EQ(view->log[i].add_bracket.x, state->bracket_x);
+      break;
+    }
+    case ViewState::Log::KIND_LogView_AddBall: {
+      ASSERT_DOUBLE_EQ(view->log[i].add_ball.x, state->ball_x);
+      break;
+    }
+    }
+  }
 }
