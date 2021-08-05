@@ -6,7 +6,7 @@ set(CMAKE_C_STANDARD 99)
 add_library(hbricks_common
         Game.c)
 
-add_executable(hbricks WIN32 main.cxx)
-target_link_libraries(hbricks hbricks_common)
+add_executable(hbricks_gdi+ WIN32 main.cxx)
+target_link_libraries(hbricks_gdi+ hbricks_common)
 
 add_subdirectory(Tests)

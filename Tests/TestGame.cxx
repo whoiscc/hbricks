@@ -2,7 +2,7 @@
 #include <cstdint>
 extern "C" {
 #include "Game.h"
-#include "GameInteral.h"
+#include "GameInternal.h"
 }
 
 class GameTest : public testing::Test {
