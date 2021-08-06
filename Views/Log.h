@@ -2,6 +2,10 @@
 //!
 //! Because `LogView` is designed for debugging and testing, the state layout is public.
 #pragma once
+#if !defined(IMPL_LogView) && !defined(__cplusplus)
+#error "LogView is not designed for using in C"
+#endif
+
 #include "View.h"
 
 #include <stdint.h>
@@ -11,8 +15,8 @@
 struct ViewState {
   struct Log {
     enum Kind {
-      KIND_LogView_AddBall,
-      KIND_LogView_AddBracket,
+      ADD_BALL,
+      ADD_BRACKET,
     } kind;
     union {
       struct {
@@ -30,6 +34,10 @@ struct ViewState {
   } log[NB_LogMax];
   int n;
 };
+
+#ifndef IMPL_LogView
+#undef NB_LogMax
+#endif
 
 #define SIZEOF_LogViewState sizeof(struct ViewState)
 const extern struct ViewBehavior LogView;

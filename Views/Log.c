@@ -1,4 +1,6 @@
-#include "Log.h"
+#define IMPL_LogView
+
+#include "Views/Log.h"
 
 #include <assert.h>
 #include <stdint.h>
@@ -12,7 +14,7 @@ struct ViewState *InitLogView(uint8_t *mem) {
 
 static void AddBall(struct ViewState *state, double x, double y, int r) {
   assert(state->n < NB_LogMax);
-  state->log[state->n].kind = KIND_LogView_AddBall;
+  state->log[state->n].kind = ADD_BALL;
   state->log[state->n].add_ball.x = x;
   state->log[state->n].add_ball.y = y;
   state->log[state->n].add_ball.r = r;
@@ -21,7 +23,7 @@ static void AddBall(struct ViewState *state, double x, double y, int r) {
 
 static void AddBracket(struct ViewState *state, double x, double y, int w, int h) {
   assert(state->n < NB_LogMax);
-  state->log[state->n].kind = KIND_LogView_AddBracket;
+  state->log[state->n].kind = ADD_BRACKET;
   state->log[state->n].add_bracket.x = x;
   state->log[state->n].add_bracket.y = y;
   state->log[state->n].add_bracket.w = w;

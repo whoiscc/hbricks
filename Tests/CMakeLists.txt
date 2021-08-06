@@ -9,6 +9,5 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 add_executable(test_hbricks TestGame.cxx)
-target_include_directories(test_hbricks PRIVATE ${CMAKE_SOURCE_DIR})
 target_link_libraries(test_hbricks hbricks_common gtest_main)
 add_test(NAME hbricks COMMAND test_hbricks)

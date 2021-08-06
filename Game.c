@@ -14,20 +14,23 @@ static inline void NormalizeBallV(struct GameState *state, double k) {
   state->ball_vy *= k;
 }
 
-static void Init(struct GameState *state, const struct GameConfig *config) {
+struct GameState *InitGame(uint8_t *mem, const struct GameConfig *config) {
   assert(sizeof(struct GameState) <= SIZEOF_GameState);
+  struct GameState *state = (struct GameState *) mem;
 
   state->config = config;
 
   state->bracket_x = config->screen_width / 2.;
   state->ball_x = state->bracket_x;
-  state->ball_y = BracketTop(state) - config->ball_radius;
+  state->ball_y = BracketTop(state) - config->ball_radius - 0.001;  // prevent hit bracket
   state->ball_vx = 1;
   state->ball_vy = -1;
   NormalizeBallV(state, config->speed);
+
+  return state;
 }
 
-static void Drop(struct GameState *state) {
+void DropGame(struct GameState *state) {
   //
 }
 
@@ -36,10 +39,10 @@ static int IsOver(const struct GameState *state) {
 }
 
 static void SetBracketX(struct GameState *state, double x) {
-  if (x < state->bracket_x / 2)
-    x = state->bracket_x / 2;
-  if (x > state->config->screen_width - state->bracket_x / 2)
-    x = state->config->screen_width - state->bracket_x / 2;
+  if (x < state->config->bracket_width / 2.)
+    x = state->config->bracket_width / 2.;
+  if (x > state->config->screen_width - state->config->bracket_width / 2.)
+    x = state->config->screen_width - state->config->bracket_width / 2.;
   double old_x = state->bracket_x;
   state->bracket_x = x;
   // todo
@@ -120,8 +123,6 @@ static void Draw(const struct GameState *state, struct ViewState *view, const st
 }
 
 const struct GameBehavior Game = {
-    .Init = Init,
-    .Drop = Drop,
     .NextTick = NextTick,
     .IsOver = IsOver,
     .SetBracketX = SetBracketX,

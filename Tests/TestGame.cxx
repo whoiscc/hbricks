@@ -14,7 +14,6 @@ protected:
   struct GameConfig config{};
 
   void SetUp() override {
-    state = reinterpret_cast<struct GameState *>(state_mem);
     config.screen_width = 800;
     config.screen_height = 600;
     config.bracket_width = 80;
@@ -24,11 +23,11 @@ protected:
     config.nb_brick_col = 30;
     config.ball_radius = 7;
     config.speed = 4;
-    Game.Init(state, &config);
+    state = InitGame(state_mem, &config);
   }
 
   void TearDown() override {
-    Game.Drop(state);
+    DropGame(state);
   }
 };
 
@@ -42,8 +41,8 @@ TEST_F(GameTest, NotGameOverFromStart) {  // NOLINT
 // initially ball should head up right at 45 degree
 TEST_F(GameTest, InitBallProperty) {  // NOLINT
   ASSERT_DOUBLE_EQ(state->ball_x, state->bracket_x);
-  ASSERT_DOUBLE_EQ(state->ball_y + state->config->ball_radius,
-                   state->config->screen_height - state->config->bracket_height);
+  ASSERT_NEAR(state->ball_y + state->config->ball_radius,
+              state->config->screen_height - state->config->bracket_height, 0.1);
   ASSERT_GT(state->ball_vx, 0);
   ASSERT_LT(state->ball_vy, 0);
   ASSERT_DOUBLE_EQ(state->ball_vx, -state->ball_vy);
@@ -102,11 +101,11 @@ TEST_F(GameTest, DrawInit) {  // NOLINT
   ASSERT_EQ(view->n, 2);
   for (int i = 0; i < 2; i += 1) {
     switch (view->log[i].kind) {
-    case ViewState::Log::KIND_LogView_AddBracket: {
+    case ViewState::Log::Kind::ADD_BRACKET: {
       ASSERT_DOUBLE_EQ(view->log[i].add_bracket.x, state->bracket_x);
       break;
     }
-    case ViewState::Log::KIND_LogView_AddBall: {
+    case ViewState::Log::Kind::ADD_BALL: {
       ASSERT_DOUBLE_EQ(view->log[i].add_ball.x, state->ball_x);
       break;
     }
