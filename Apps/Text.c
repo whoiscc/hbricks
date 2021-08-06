@@ -71,7 +71,7 @@ int main(void) {
     }
 
     if (!strcmp(command, "q"))
-      goto drop_game;
+      break;
 
     if (!strcmp(command, "b")) {
       double bracket_x;
@@ -101,9 +101,9 @@ int main(void) {
     RESPOND("unknown command: %s", command);
   }
 
-  printf("Game Over\n");
+  if (Game.IsOver(game))
+    printf("Game Over\n");
 
-  drop_game:
   DropGame(game);
   return 0;
 }
