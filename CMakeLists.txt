@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.20)
 project(hbricks C CXX)
 
-set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 20)  # MSVC requires at least C++20
 include_directories(${CMAKE_SOURCE_DIR})
 
 add_library(hbricks_common
@@ -9,7 +10,7 @@ add_library(hbricks_common
         Views/Log.c)
 
 add_executable(hbricks_gdi+ WIN32
-        main.cxx
+        Apps/GDI+.cxx
         Views/GDI+.cxx)
 target_link_libraries(hbricks_gdi+ hbricks_common)
 

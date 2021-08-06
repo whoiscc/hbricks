@@ -37,7 +37,7 @@ int main(void) {
     } while (strlen(line) == 1);  // for newline
 
 #define RESPOND(msg, ...) \
-  printf("[Game] " msg "\n", __VA_ARGS__); \
+  printf("[Game] " msg "\n", ##__VA_ARGS__); \
   continue;
 
     if (strlen(line) == LINE_LENGTH_MAX + 1) {
