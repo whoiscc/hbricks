@@ -10,13 +10,13 @@ add_library(hbricks_common
         LogView.c)
 
 add_executable(hbricks_gdi+ WIN32
-        Platforms/GDI+/App.cxx
-        Platforms/GDI+/View.cxx)
+        Platform/GDI+/App.cxx
+        Platform/GDI+/View.cxx)
 target_link_libraries(hbricks_gdi+ hbricks_common)
 
 add_executable(hbricks_text
-        Platforms/Text/App.c
-        Platforms/Text/View.c)
+        Platform/Text/App.c
+        Platform/Text/View.c)
 target_link_libraries(hbricks_text hbricks_common)
 
-add_subdirectory(Tests)
+add_subdirectory(Test)

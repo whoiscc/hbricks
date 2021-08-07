@@ -1,4 +1,4 @@
-#include "Platforms/GDI+/View.h"
+#include "Platform/GDI+/View.h"
 
 #include <cassert>
 #include <new>

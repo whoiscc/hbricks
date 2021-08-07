@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "Behavior/Game.h"
-#include "Platforms/Text/View.h"
+#include "Platform/Text/View.h"
 
 int main(void) {
   uint8_t view_mem[SIZEOF_TextViewState];

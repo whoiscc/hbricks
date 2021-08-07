@@ -9,7 +9,7 @@
 extern "C" {
 #include "Behavior/Game.h"
 };
-#include "Platforms/GDI+/View.h"
+#include "Platform/GDI+/View.h"
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
