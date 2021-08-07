@@ -4,12 +4,12 @@
 
 #include <cstdint>
 
-#include <windows.h>
+#include <Windows.h>
 
 extern "C" {
-#include "Game.h"
+#include "Behavior/Game.h"
 };
-#include "Views/GDI+.h"
+#include "Platforms/GDI+/View.h"
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 

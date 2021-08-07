@@ -1,9 +1,9 @@
 #pragma once
-#include "View.h"
+#include "Behavior/View.h"
 
 #include <cstdint>
 
-#include <windows.h>
+#include <Windows.h>
 
 #define SIZEOF_GDIPlusViewState 64
 extern const struct ViewBehavior GDIPlusView;

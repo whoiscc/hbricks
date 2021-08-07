@@ -7,16 +7,16 @@ include_directories(${CMAKE_SOURCE_DIR})
 
 add_library(hbricks_common
         Game.c
-        Views/Log.c)
+        LogView.c)
 
 add_executable(hbricks_gdi+ WIN32
-        Apps/GDI+.cxx
-        Views/GDI+.cxx)
+        Platforms/GDI+/App.cxx
+        Platforms/GDI+/View.cxx)
 target_link_libraries(hbricks_gdi+ hbricks_common)
 
 add_executable(hbricks_text
-        Apps/Text.c
-        Views/Text.c)
+        Platforms/Text/App.c
+        Platforms/Text/View.c)
 target_link_libraries(hbricks_text hbricks_common)
 
 add_subdirectory(Tests)

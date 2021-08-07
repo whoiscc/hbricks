@@ -6,7 +6,7 @@
 #error "LogView is not designed for using in C"
 #endif
 
-#include "View.h"
+#include "Behavior/View.h"
 
 #include <stdint.h>
 

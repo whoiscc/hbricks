@@ -8,7 +8,7 @@
 #pragma once
 #include <stdint.h>
 
-#include "View.h"
+#include "Behavior/View.h"
 
 struct GameState;
 

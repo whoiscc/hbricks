@@ -1,4 +1,4 @@
-#include "Views/Text.h"
+#include "Platforms/Text/View.h"
 
 #include <stdio.h>
 

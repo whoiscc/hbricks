@@ -2,7 +2,7 @@
 //! Extracted from `Game.c` to make `Game` testable
 #pragma once
 
-#include "Game.h"
+#include "Behavior/Game.h"
 
 struct GameState {
   const struct GameConfig *config;

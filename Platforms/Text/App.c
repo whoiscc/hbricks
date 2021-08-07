@@ -3,8 +3,8 @@
 #include <assert.h>
 #include <string.h>
 
-#include "Game.h"
-#include "Views/Text.h"
+#include "Behavior/Game.h"
+#include "Platforms/Text/View.h"
 
 int main(void) {
   uint8_t view_mem[SIZEOF_TextViewState];

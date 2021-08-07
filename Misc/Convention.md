@@ -1,0 +1,3 @@
+**Meta.** The meaning for convention is not to fix things forever, but to help memorize. Everything below could be changed if it is proved to be wrong or improvable.
+
+**File structure.** Almost every file in this project is self-documented source file, so source root is project root rather than a dedicated `src` folder. There is also no `include`, each associated header file, if exists, should colocate with implementation. There is a global config to include project root in header path, so every `#include` with quotes should use path relative to project root, even when referencing associated header.

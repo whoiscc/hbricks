@@ -1,10 +1,10 @@
 #include <gtest/gtest.h>
 #include <cstdint>
 extern "C" {
-#include "Game.h"
+#include "Behavior/Game.h"
 #include "GameInternal.h"
-#include "View.h"
-#include "Views/Log.h"
+#include "Behavior/View.h"
+#include "LogView.h"
 }
 
 class GameTest : public testing::Test {
