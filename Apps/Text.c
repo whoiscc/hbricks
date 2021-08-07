@@ -10,17 +10,7 @@ int main(void) {
   uint8_t view_mem[SIZEOF_TextViewState];
   struct ViewState *view = InitTextView(view_mem);
 
-  struct GameConfig config = {
-      .screen_width = 800,
-      .screen_height = 600,
-      .bracket_width = 80,
-      .bracket_height = 10,
-      .brick_width = 20,
-      .brick_height = 20,
-      .nb_brick_col = 40,
-      .ball_radius = 8,
-      .speed = 4,
-  };
+  struct GameConfig config = default_game_config;
   // todo interactive edit config
 
   uint8_t game_mem[SIZEOF_GameState];

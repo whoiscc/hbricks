@@ -11,18 +11,9 @@ class GameTest : public testing::Test {
 protected:
   std::uint8_t state_mem[SIZEOF_GameState]{};
   struct GameState *state{};
-  struct GameConfig config{};
+  struct GameConfig config = default_game_config;
 
   void SetUp() override {
-    config.screen_width = 800;
-    config.screen_height = 600;
-    config.bracket_width = 80;
-    config.bracket_height = 10;
-    config.brick_width = 20;
-    config.bracket_height = 20;
-    config.nb_brick_col = 30;
-    config.ball_radius = 7;
-    config.speed = 4;
     state = InitGame(state_mem, &config);
   }
 

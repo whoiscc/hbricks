@@ -4,6 +4,18 @@
 #include <assert.h>
 #include <math.h>
 
+const struct GameConfig default_game_config = {
+    .screen_width = 800,
+    .screen_height = 600,
+    .brick_width = 20,
+    .brick_height = 20,
+    .nb_brick_col = 40,
+    .bracket_width = 80,
+    .bracket_height = 10,
+    .ball_radius = 8,
+    .speed = 4.,
+};
+
 static inline int BracketTop(const struct GameState *state) {
   return state->config->screen_height - state->config->bracket_height;
 }
@@ -44,8 +56,8 @@ static void SetBracketX(struct GameState *state, double x) {
   if (x > state->config->screen_width - state->config->bracket_width / 2.)
     x = state->config->screen_width - state->config->bracket_width / 2.;
   double old_x = state->bracket_x;
+  // todo interpolation if necessary
   state->bracket_x = x;
-  // todo
   state->bracket_vx = x - old_x;
 }
 

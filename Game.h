@@ -41,6 +41,7 @@ struct GameConfig {
   int ball_radius;
   double speed;
 };
+extern const struct GameConfig default_game_config;
 
 // the lifetime of `GameConfig` must outlive `GameState`
 struct GameState *InitGame(uint8_t *mem, const struct GameConfig *config);

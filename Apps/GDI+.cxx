@@ -29,23 +29,16 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
   RegisterClass(&wc);
 
   std::uint8_t game_mem[SIZEOF_GameState];
-  struct GameConfig config = {
-      .screen_width = 800,
-      .screen_height = 600,
-      .brick_width = 20,
-      .brick_height = 20,
-      .nb_brick_col = 40,
-      .bracket_width = 80,
-      .bracket_height = 10,
-      .ball_radius = 8,
-      .speed = 4.,
-  };
+  struct GameConfig config = default_game_config;
   struct GameState *game = InitGame(game_mem, &config);
 
   GDIPlusGuard g;
 
   // Create the window.
-  WindowParam param = {.game = game, .Game = &Game};
+  RECT rect = {0, 0, config.screen_width, config.screen_height};
+  AdjustWindowRectExForDpi(&rect, WS_OVERLAPPEDWINDOW, false, 0, GetDpiForWindow(GetDesktopWindow()));
+
+  WindowParam param = {game, &Game};
   HWND hwnd = CreateWindowEx(
       0,                              // Optional window styles.
       CLASS_NAME,                     // Window class
@@ -53,7 +46,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
       WS_OVERLAPPEDWINDOW,            // Window style
 
       // Size and position
-      CW_USEDEFAULT, CW_USEDEFAULT, config.screen_width, config.screen_height,
+      CW_USEDEFAULT, CW_USEDEFAULT, rect.right - rect.left, rect.bottom - rect.top,
 
       nullptr,       // Parent window
       nullptr,       // Menu
