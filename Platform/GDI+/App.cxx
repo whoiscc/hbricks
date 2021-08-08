@@ -7,7 +7,7 @@
 #include <Windows.h>
 
 extern "C" {
-#include "Behavior/Game.h"
+#include "Game/Normal.h"
 };
 #include "Platform/GDI+/View.h"
 

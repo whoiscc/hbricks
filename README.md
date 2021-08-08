@@ -1,6 +1,6 @@
 Humor Bricks, a `/remake` of [the Breakout game].
 
-The core part is `Game.c`. It is recommended to read [convention] before diving into code.
+The core part is `Game/Normal.c`. It is recommended to read [convention] before diving into code.
 
 **Screenshots**
 

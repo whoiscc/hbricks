@@ -3,7 +3,7 @@
 #include <assert.h>
 #include <string.h>
 
-#include "Behavior/Game.h"
+#include "Game/Normal.h"
 #include "Platform/Text/View.h"
 
 int main(void) {
@@ -68,7 +68,7 @@ int main(void) {
       if (offset >= len || sscanf_s(line + offset, " %lf", &bracket_x) == EOF) {
         RESPOND("cannot parse <x> for {command = b}");
       }
-      Game.SetBracketX(game, bracket_x);
+      Game.SetBracketX(game, bracket_x, 1);
       continue;
     }
 

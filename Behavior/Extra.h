@@ -1,9 +1,8 @@
 #pragma once
 #include "Polyfill.h"
 
-
-struct DebugFmtState;
+struct ReprState;
 
 struct Extra {
-  void (*DebugFmt)(struct DebugFmtState *, struct StrBuf *);
+  void (*Repr)(struct ReprState *, struct StrBuf *);
 };

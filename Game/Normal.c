@@ -1,5 +1,4 @@
-#include "Behavior/Game.h"
-#include "GameInternal.h"
+#include "Game/Normal.h"
 
 #include <assert.h>
 #include <math.h>
@@ -16,6 +15,19 @@ const struct GameConfig default_game_config = {
     .speed = 4.,
     .bracket_speed = 0.75,
 };
+
+struct GameState {
+  const struct GameConfig *config;
+
+  double bracket_x;
+  double bracket_vx;
+  double ball_x;
+  double ball_y;
+  double ball_vx;
+  double ball_vy;
+};
+
+STATIC_ASSERT(state_size, sizeof(struct GameState) <= SIZEOF_GameState);
 
 static inline int BracketTop(const struct GameState *state) {
   return state->config->screen_height - state->config->bracket_height;
