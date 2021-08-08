@@ -14,6 +14,7 @@ const struct GameConfig default_game_config = {
     .bracket_height = 10,
     .ball_radius = 8,
     .speed = 4.,
+    .bracket_speed = 0.75,
 };
 
 static inline int BracketTop(const struct GameState *state) {
@@ -49,15 +50,18 @@ static int IsOver(const struct GameState *state) {
   return state->ball_y > state->config->screen_height;
 }
 
-static void SetBracketX(struct GameState *state, double x) {
+static void SetBracketX(struct GameState *state, double x, int interpolate) {
   if (x < state->config->bracket_width / 2.)
     x = state->config->bracket_width / 2.;
   if (x > state->config->screen_width - state->config->bracket_width / 2.)
     x = state->config->screen_width - state->config->bracket_width / 2.;
   double old_x = state->bracket_x;
-  // todo interpolation if necessary
-  state->bracket_x = x;
-  state->bracket_vx = x - old_x;
+  if (!interpolate || fabs(x - state->bracket_x) < 1.) {
+    state->bracket_x = x;
+  } else {
+    state->bracket_x += state->config->bracket_speed * (x - state->bracket_x);
+  }
+  state->bracket_vx = state->bracket_x - old_x;
 }
 
 // if hit, which probably means overlapping, is detected, the ball is immediately taken out of the other entity

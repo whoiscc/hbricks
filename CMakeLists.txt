@@ -7,7 +7,8 @@ include_directories(${CMAKE_SOURCE_DIR})
 
 add_library(hbricks_common
         Game.c
-        LogView.c)
+        LogView.c
+        StrBuf.c)
 
 add_executable(hbricks_gdi+ WIN32
         Platform/GDI+/App.cxx

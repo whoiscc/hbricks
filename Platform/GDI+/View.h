@@ -2,10 +2,10 @@
 extern "C" {
 #include "Behavior/View.h"
 
-#include "Tweak.h"
+#include "Polyfill.h"
 }
 
-#include <Windows.h>
+#include <windows.h>
 
 #define SIZEOF_GDIPlusViewState 32
 extern const struct ViewBehavior GDIPlusView;

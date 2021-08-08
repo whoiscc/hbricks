@@ -20,7 +20,7 @@ struct ViewState {
   Graphics graphics;
 };
 
-STATIC_ASSERT_SIZEOF(GDIPlus, View);
+STATIC_ASSERT(state_size, sizeof(struct ViewState) <= SIZEOF_GDIPlusViewState);
 
 struct ViewState *InitGDIPlusView(uint8_t *mem, HDC hdc) {
   auto *state = reinterpret_cast<struct ViewState *>(mem);

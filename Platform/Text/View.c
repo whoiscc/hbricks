@@ -6,7 +6,7 @@ struct ViewState {
   int _[0];
 };
 
-STATIC_ASSERT_SIZEOF(Text, View);
+STATIC_ASSERT(state_size, sizeof(struct ViewState) <= SIZEOF_TextViewState);
 
 struct ViewState *InitTextView(uint8_t *mem) {
   return (struct ViewState *) mem;

@@ -15,4 +15,4 @@ struct GameState {
   double ball_vy;
 };
 
-STATIC_ASSERT_SIZEOF(, Game);
+STATIC_ASSERT(state_size, sizeof(struct GameState) <= SIZEOF_GameState);

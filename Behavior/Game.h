@@ -6,7 +6,8 @@
 //! The disadvantage of "One-Big-Game" is that it could result in a unmaintainable Game implementation. For that the
 //! Game may need to be decoupled when it grows larger.
 #pragma once
-#include "Tweak.h"
+#include "Polyfill.h"
+#include "Behavior/Extra.h"
 #include "Behavior/View.h"
 
 struct GameState;
@@ -19,9 +20,11 @@ struct GameBehavior {
   int (*IsOver)(const struct GameState *);
   // the x position of bracket is probably the only property that directly responds to user input
   // if user can do more thing, maybe it is better to convert it into a more general form
-  void (*SetBracketX)(struct GameState *, double);
+  void (*SetBracketX)(struct GameState *, double dst, int interpolate);
   //
   void (*Draw)(const struct GameState *, struct ViewState *, const struct ViewBehavior *);
+
+  struct Extra Ex;
 };
 
 // *the Game*, which probably will be the only implementation of `GameBehaviour` in the project
@@ -39,6 +42,7 @@ struct GameConfig {
   int bracket_height;
   int ball_radius;
   double speed;
+  double bracket_speed;
 };
 extern const struct GameConfig default_game_config;
 
