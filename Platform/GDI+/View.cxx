@@ -1,6 +1,5 @@
 #include "Platform/GDI+/View.h"
 
-#include <cassert>
 #include <new>
 
 #include <gdiplus.h>
@@ -21,8 +20,9 @@ struct ViewState {
   Graphics graphics;
 };
 
+STATIC_ASSERT_SIZEOF(GDIPlus, View);
+
 struct ViewState *InitGDIPlusView(uint8_t *mem, HDC hdc) {
-  assert(sizeof(struct ViewState) <= SIZEOF_GDIPlusViewState);
   auto *state = reinterpret_cast<struct ViewState *>(mem);
   ::new(&state->graphics) Graphics(hdc);
   state->graphics.Clear(Color::White);  // todo only clear redraw area

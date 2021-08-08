@@ -14,3 +14,5 @@ struct GameState {
   double ball_vx;
   double ball_vy;
 };
+
+STATIC_ASSERT_SIZEOF(, Game);

@@ -6,7 +6,6 @@
 #include <stdint.h>
 
 struct ViewState *InitLogView(uint8_t *mem) {
-  assert(sizeof(struct ViewState) <= SIZEOF_LogViewState);
   struct ViewState *state = (struct ViewState *) mem;
   state->n = 0;
   return state;

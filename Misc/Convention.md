@@ -1,4 +1,8 @@
 ***Meta.*** The meaning for convention is not to fix things forever, but to help memorize. Everything below could be changed if it is proved to be wrong or improvable.
+* 2021.8.7: First draft.
+* 2021.8.8: 
+  * Update `SIZEOF` assertion.
+  * Add `#include` order convention.
 
 **File structure.** Almost every file in this project is self-documented source file, so source root is project root rather than a dedicated `src` folder. There is also no `include`, each associated header file, if exists, should colocate with implementation. There is a global config to include project root in header path, so every `#include` with quotes should use path relative to project root, even when referencing associated header.
 
@@ -48,8 +52,8 @@ Notice that instead of exposing the detail layout of state struct, the header fi
 **Memory management.** The user of an instance decides where to allocate memory for it, i.e. the state struct. The convention at the same time wants to keep state struct layout private to the user. So, for behavior `X`, the implementation `My`:
 * Provides a `SIZEOF_MyXState` macro, which expands to a `size_t` that not less than `sizeof(struct XState)` that defines in the implementation code file.
   * The size has to be manually decided, and may waste some memory. The recommended size is 32 bytes which fits an L1 cache line.
+  * After state struct declaration add `STATIC_ASSERT_SIZEOF(My, X);` to look out for growing struct size in the future.
 * Provides an `InitMyX` function, which takes a `uint8_t *` and other custom initialization configs as arguments, and returns `struct XState *`. In the function:
-  * (Recommended) assert `SIZEOF_MyXState` is not less than size of struct.
   * Cast `uint8_t *` into private `struct XState *`.
   * Assign initial values for the struct.
     * May allocate memory for sub-instances.
@@ -83,3 +87,14 @@ DropMyX(x);  // if there is one
 * File name should be in camel case.
 * There is no plural(-s/es), past(-ed) or present(-ing) tense anywhere.
   * Except `CMakeLists.txt`
+
+**`#include` order.** Follow Google C++ code style, the `#include`s are listed as:
+* Associated header.
+* A blank line.
+* System headers, for C++ only headers end with `.h`.
+* A blank line.
+* For C++, system headers without trailing `.h`
+* For C++, a blank line.
+* Headers of other libraries, e.g. `<gdiplus.h>`.
+* A blank line.
+* Headers of this project.

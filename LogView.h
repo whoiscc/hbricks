@@ -8,7 +8,7 @@
 
 #include "Behavior/View.h"
 
-#include <stdint.h>
+#include "Tweak.h"
 
 #define NB_LogMax 16
 

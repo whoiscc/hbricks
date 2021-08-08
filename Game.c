@@ -27,7 +27,6 @@ static inline void NormalizeBallV(struct GameState *state, double k) {
 }
 
 struct GameState *InitGame(uint8_t *mem, const struct GameConfig *config) {
-  assert(sizeof(struct GameState) <= SIZEOF_GameState);
   struct GameState *state = (struct GameState *) mem;
 
   state->config = config;

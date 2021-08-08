@@ -1,9 +1,10 @@
-#include <gtest/gtest.h>
 #include <cstdint>
+
+#include <gtest/gtest.h>
+
 extern "C" {
 #include "Behavior/Game.h"
 #include "GameInternal.h"
-#include "Behavior/View.h"
 #include "LogView.h"
 }
 

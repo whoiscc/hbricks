@@ -6,8 +6,7 @@
 //! The disadvantage of "One-Big-Game" is that it could result in a unmaintainable Game implementation. For that the
 //! Game may need to be decoupled when it grows larger.
 #pragma once
-#include <stdint.h>
-
+#include "Tweak.h"
 #include "Behavior/View.h"
 
 struct GameState;

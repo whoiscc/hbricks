@@ -1,7 +1,9 @@
 #pragma once
+extern "C" {
 #include "Behavior/View.h"
 
-#include <cstdint>
+#include "Tweak.h"
+}
 
 #include <Windows.h>
 
@@ -15,6 +17,6 @@ public:
   ~GDIPlusGuard();
 };
 //
-struct ViewState *InitGDIPlusView(std::uint8_t *mem, HDC hdc);
+struct ViewState *InitGDIPlusView(uint8_t *mem, HDC hdc);
 //
 void DropGDIPlusView(struct ViewState *state);

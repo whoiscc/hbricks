@@ -1,7 +1,7 @@
 #pragma once
 #include "Behavior/View.h"
 
-#include <stdint.h>
+#include "Tweak.h"
 
 #define SIZEOF_TextViewState 32
 extern const struct ViewBehavior TextView;
