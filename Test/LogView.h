@@ -2,13 +2,11 @@
 //!
 //! Because `LogView` is designed for debugging and testing, the state layout is public.
 #pragma once
-#if !defined(IMPL_LogView) && !defined(__cplusplus)
+#include "Polyfill.h"
+#if !IS_IMPL(LogView) && !defined(__cplusplus)
 #error "LogView is not designed for using in C"
 #endif
-
 #include "Behavior/View.h"
-
-#include "Polyfill.h"
 
 #define NB_LogMax 16
 
@@ -35,7 +33,7 @@ struct ViewState {
   int n;
 };
 
-#ifndef IMPL_LogView
+#if !IS_IMPL(LogView)
 #undef NB_LogMax
 #endif
 

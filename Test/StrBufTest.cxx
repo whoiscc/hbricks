@@ -66,3 +66,27 @@ TEST_F(StrBufTest, Incremental) {  // NOLINT
     ASSERT_STREQ(StrBuf.View(str_buf), expect);
   }
 }
+
+TEST_F(StrBufTest, Format) {  // NOLINT
+  StrBuf.FmtWrite(str_buf, "ans = %d", 42);
+  ASSERT_STREQ(StrBuf.View(str_buf), "ans = 42");
+}
+
+TEST_F(StrBufTest, Repr) {  // NOLINT
+  StrBuf.Append(str_buf, "Hello!");
+  StrBuf.Ex.Repr(str_buf, str_buf);
+  ASSERT_STREQ(StrBuf.View(str_buf),
+               "Hello!"
+               "StrBuf[emb]{len=6,view=Hello!}");
+  for (int i = 0; i < 64 - 1; i += 1) {
+    StrBuf.Ex.Repr(str_buf, str_buf);
+  }
+  const char *s = "StrBuf";
+  const char *v = StrBuf.View(str_buf);
+  int count = 0;
+  while ((v = std::strstr(v, s))) {
+    count += 1;
+    v += std::strlen(s);
+  }
+  ASSERT_EQ(count, 64);
+}

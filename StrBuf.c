@@ -1,8 +1,11 @@
+#define IMPL_StrBuf
 #include "StrBuf.h"
 
 #include <stdlib.h>
 #include <assert.h>
 #include <string.h>
+#include <stdio.h>
+#include <stdarg.h>
 
 #define SIZEOF_embedded (SIZEOF_StrBufState - sizeof(size_t))
 
@@ -62,11 +65,41 @@ static void Append(struct StrBufState *this, const char *str) {
   this->cap = len;
 }
 
+void FmtWrite(struct StrBufState *this, const char *fmt, ...) {
+  // there is a `vasprintf` on Linux, but not on Windows
+  // it is undesirable to polyfill that function, since the whole StrBuf is already a polyfill
+  // some performance may be lost here, just note for it
+  va_list args, args_cloned;
+      va_start(args, fmt);
+  va_copy(args_cloned, args);
+  int len = vsnprintf(NULL, 0, fmt, args);
+      va_end(args);
+  char *buf = malloc(len + 1);
+  vsnprintf(buf, len + 1, fmt, args_cloned);
+      va_end(args_cloned);
+  StrBuf.Append(this, buf);
+  free(buf);
+}
+
 static const char *View(const struct StrBufState *this) {
   return IsEmbedded(this) ? this->embedded : this->ptr;  // notice: they are NOT the same
 }
 
-const struct StrBuf StrBuf = {
+static void Repr(void *repr, struct StrBufState *out) {
+  struct StrBufState *this = repr;
+  StrBuf.FmtWrite(out,
+                  "StrBuf%s{len=%zu,view=%.10s%s}",
+                  IsEmbedded(this) ? "[emb]" : "",
+                  GetLen(this),
+                  StrBuf.View(this),
+                  GetLen(this) > 10 ? "..." : "");
+}
+
+NAMESPACE(StrBuf) StrBuf = {
     .Append = Append,
+    .FmtWrite = FmtWrite,
     .View = View,
+    .Ex = {
+        .Repr = Repr,
+    },
 };
