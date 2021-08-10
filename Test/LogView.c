@@ -1,6 +1,5 @@
 #define IMPL_LogView
-
-#include "LogView.h"
+#include "Test/LogView.h"
 
 #include <assert.h>
 #include <stdint.h>

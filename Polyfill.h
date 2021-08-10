@@ -16,11 +16,7 @@
 
 #define IS_IMPL(name) __is_defined(IMPL_##name)
 
-#define CONCAT(f, n) f ## n
-#define NAMESPACE(name) NAMESPACE_E(name, IS_IMPL(name))
-#define NAMESPACE_E(name, n) CONCAT(NAMESPACE, n)(name)
-#define NAMESPACE0(name) const struct
-#define NAMESPACE1(name) const struct HBricksInternal_##name##_Namespace
+#define NAMESPACE(name) const struct HBricksInternal_Namespace_##name
 
 // MSVC not allow to typedef zero-length array type
 #define STATIC_ASSERT(id, expr) \

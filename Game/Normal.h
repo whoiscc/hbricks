@@ -1,6 +1,7 @@
 // *the Game*, which probably will be the only implementation of `GameBehaviour` in the project
 // but maybe someday there will be a VeryHardGame, who knows
 #pragma once
+#include "Polyfill.h"
 #include "Behavior/Game.h"
 
 #define SIZEOF_GameState 64

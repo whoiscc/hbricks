@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include <stdarg.h>
 
+#include "Polyfill.h"
+
 #define SIZEOF_embedded (SIZEOF_StrBufState - sizeof(size_t))
 
 struct StrBufState {

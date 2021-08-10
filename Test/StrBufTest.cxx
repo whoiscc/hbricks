@@ -81,8 +81,11 @@ TEST_F(StrBufTest, Repr) {  // NOLINT
   for (int i = 0; i < 64 - 1; i += 1) {
     StrBuf.Ex.Repr(str_buf, str_buf);
   }
-  const char *s = "StrBuf";
+
   const char *v = StrBuf.View(str_buf);
+  ASSERT_STREQ(&v[std::strlen(v) - 4], "...}");
+
+  const char *s = "StrBuf";
   int count = 0;
   while ((v = std::strstr(v, s))) {
     count += 1;
