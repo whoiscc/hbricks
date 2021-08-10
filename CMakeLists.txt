@@ -16,7 +16,8 @@ target_link_libraries(hbricks_gdi+ hbricks_common)
 
 add_executable(hbricks_text
         Platform/Text/App.c
-        Platform/Text/View.c)
+        Platform/Text/View.c
+        Platform/Text/Emit.c)
 target_link_libraries(hbricks_text hbricks_common)
 
 add_subdirectory(Test)

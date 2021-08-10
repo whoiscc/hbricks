@@ -1,4 +1,4 @@
-//! Game.h: Abstract polymorphic Game definition. The default implementation of Game is appended.
+//! Game.h: Abstract polymorphic Game definition.
 //!
 //! The `Game` model works on pretty low level, maintains states for stage details like animation. This enables the
 //! simplification of platform-dependent `View`s, which only need to expose stateless entity-drawing interfaces.

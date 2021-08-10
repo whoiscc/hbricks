@@ -22,4 +22,7 @@
 #define STATIC_ASSERT(id, expr) \
   typedef int HBricksInternal_StaticAssert_##id[(expr) ? 42 : -1]
 
+// Utilities, e.g. common structure and container types
+// Normally these headers include this polyfill, which creates circle
+// make sure everything they rely on goes above, and think about better solution
 #include "StrBuf.h"
