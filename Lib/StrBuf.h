@@ -1,5 +1,5 @@
 #pragma once
-#include "Polyfill.h"
+#include "Lib/Polyfill.h"
 
 struct StrBufState;
 #define SIZEOF_StrBufState 32
@@ -16,5 +16,5 @@ extern NAMESPACE(StrBuf) {
   //
   const char *(*View)(const struct StrBufState *);
   //
-  const struct Extra Ex;
+  const struct ExtraBehavior Ex;
 } StrBuf;

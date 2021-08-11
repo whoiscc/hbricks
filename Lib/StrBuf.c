@@ -1,5 +1,5 @@
 #define IMPL_StrBuf
-#include "StrBuf.h"
+#include "Lib/StrBuf.h"
 
 #include <stdlib.h>
 #include <assert.h>
@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-#include "Polyfill.h"
+#include "Lib/Polyfill.h"
 
 #define SIZEOF_embedded (SIZEOF_StrBufState - sizeof(size_t))
 

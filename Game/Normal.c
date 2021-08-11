@@ -3,7 +3,7 @@
 #include <assert.h>
 #include <math.h>
 
-#include "Polyfill.h"
+#include "Lib/Polyfill.h"
 
 const struct GameConfig default_game_config = {
     .screen_width = 800,

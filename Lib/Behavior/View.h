@@ -1,5 +1,5 @@
 #pragma once
-#include "Behavior/Extra.h"
+#include "Lib/Polyfill.h"
 
 struct ViewState;
 
@@ -9,5 +9,5 @@ struct ViewBehavior {
   //
   void (*AddBracket)(struct ViewState *, double x, double y, int w, int h);
   //
-  struct Extra Ex;
+  struct ExtraBehavior Ex;
 };

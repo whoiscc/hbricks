@@ -6,7 +6,7 @@
 
 extern "C" {
 #include "Game/Normal.h"
-#include "LogView.h"
+#include "Test/LogView.h"
 }
 
 class GameTest : public testing::Test {

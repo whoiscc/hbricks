@@ -1,6 +1,5 @@
 #pragma once
-#include "Polyfill.h"
-#include "Behavior/Extra.h"
+#include "Lib/Polyfill.h"
 
 struct EmitState;
 

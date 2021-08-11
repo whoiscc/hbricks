@@ -27,5 +27,6 @@
 // Utilities, e.g. common structure and container types
 // Normally these headers include this polyfill, which creates circle
 // make sure everything they rely on goes above, and think about better solution
-#include "Behavior/Extra.h"
-#include "StrBuf.h"
+// Extra has to go to before all other components, most of them contain nested ExtraBehavior rather than pointer
+#include "Lib/Behavior/Extra.h"
+#include "Lib/StrBuf.h"

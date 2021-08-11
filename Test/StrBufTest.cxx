@@ -3,8 +3,8 @@
 #include <gtest/gtest.h>
 
 extern "C" {
-#include "StrBuf.h"
-#include "Polyfill.h"
+#include "Lib/StrBuf.h"
+#include "Lib/Polyfill.h"
 }
 
 class StrBufTest : public testing::Test {

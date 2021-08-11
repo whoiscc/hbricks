@@ -2,7 +2,7 @@
 extern "C" {
 #include "Behavior/View.h"
 
-#include "Polyfill.h"
+#include "Lib/Polyfill.h"
 }
 
 #include <windows.h>

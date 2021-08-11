@@ -1,8 +1,8 @@
 // *the Game*, which probably will be the only implementation of `GameBehaviour` in the project
 // but maybe someday there will be a VeryHardGame, who knows
 #pragma once
-#include "Polyfill.h"
-#include "Behavior/Game.h"
+#include "Lib/Polyfill.h"
+#include "Lib/Behavior/Game.h"
 
 #define SIZEOF_GameState 64
 extern const struct GameBehavior Game;

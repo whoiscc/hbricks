@@ -6,9 +6,8 @@
 //! The disadvantage of "One-Big-Game" is that it could result in a unmaintainable Game implementation. For that the
 //! Game may need to be decoupled when it grows larger.
 #pragma once
-#include "Polyfill.h"
-#include "Behavior/Extra.h"
-#include "Behavior/View.h"
+#include "Lib/Polyfill.h"
+#include "Lib/Behavior/View.h"
 
 struct GameState;
 
@@ -24,5 +23,5 @@ struct GameBehavior {
   //
   void (*Draw)(const struct GameState *, struct ViewState *, const struct ViewBehavior *);
 
-  struct Extra Ex;
+  struct ExtraBehavior Ex;
 };
