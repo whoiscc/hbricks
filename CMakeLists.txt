@@ -12,12 +12,12 @@ add_library(hbricks_common
 add_executable(hbricks_gdi+ WIN32
         Platform/GDI+/App.cxx
         Platform/GDI+/View.cxx)
-target_link_libraries(hbricks_gdi+ hbricks_common)
+target_link_libraries(hbricks_gdi+ PRIVATE hbricks_common)
 
 add_executable(hbricks_text
         Platform/Text/App.c
         Platform/Text/View.c
         Platform/Text/Emit.c)
-target_link_libraries(hbricks_text hbricks_common)
+target_link_libraries(hbricks_text PRIVATE hbricks_common)
 
 add_subdirectory(Test)

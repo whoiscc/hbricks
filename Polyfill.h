@@ -16,6 +16,8 @@
 
 #define IS_IMPL(name) __is_defined(IMPL_##name)
 
+// it is achievable to only expose struct type name to implementation source
+// however since it is already `HBricksInternal` it does not feel like necessary
 #define NAMESPACE(name) const struct HBricksInternal_Namespace_##name
 
 // MSVC not allow to typedef zero-length array type
@@ -25,4 +27,5 @@
 // Utilities, e.g. common structure and container types
 // Normally these headers include this polyfill, which creates circle
 // make sure everything they rely on goes above, and think about better solution
+#include "Behavior/Extra.h"
 #include "StrBuf.h"

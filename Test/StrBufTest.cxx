@@ -13,10 +13,10 @@ protected:
   StrBufState *str_buf{};
 
   void SetUp() override {
-    str_buf = InitStrBuf(mem);
+    str_buf = StrBuf.Init(mem);
   }
   void TearDown() override {
-    DropStrBuf(str_buf);
+    StrBuf.Drop(str_buf);
   }
 };
 

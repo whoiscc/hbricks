@@ -9,7 +9,7 @@ FetchContent_MakeAvailable(googletest)
 
 add_executable(test_hbricks
         LogView.c
-        GameTest.cxx
+        NormalGameTest.cxx
         StrBufTest.cxx)
-target_link_libraries(test_hbricks hbricks_common gtest_main)
+target_link_libraries(test_hbricks PRIVATE hbricks_common gtest_main)
 add_test(NAME hbricks COMMAND test_hbricks)

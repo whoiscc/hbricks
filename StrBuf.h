@@ -1,13 +1,14 @@
 #pragma once
 #include "Polyfill.h"
-#include "Behavior/Extra.h"
 
 struct StrBufState;
 #define SIZEOF_StrBufState 32
 
-//
-struct StrBufState *InitStrBuf(uint8_t *mem);
 extern NAMESPACE(StrBuf) {
+  //
+  struct StrBufState *(*Init)(uint8_t *mem);
+  //
+  void (*Drop)(struct StrBufState *str_buf);
   //
   void (*Append)(struct StrBufState *, const char *);
   //
@@ -17,5 +18,3 @@ extern NAMESPACE(StrBuf) {
   //
   const struct Extra Ex;
 } StrBuf;
-//
-void DropStrBuf(struct StrBufState *str_buf);

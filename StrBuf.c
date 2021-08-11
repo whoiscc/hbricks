@@ -23,7 +23,7 @@ struct StrBufState {
 
 STATIC_ASSERT(state_size, sizeof(struct StrBufState) <= SIZEOF_StrBufState);
 
-struct StrBufState *InitStrBuf(uint8_t *mem) {
+static struct StrBufState *Init(uint8_t *mem) {
   struct StrBufState *str_buf = (struct StrBufState *) mem;
   str_buf->cap = 0;
   str_buf->ptr = NULL;  // embedded[0..<8] = 0
@@ -35,7 +35,7 @@ static inline int IsEmbedded(const struct StrBufState *this) {
   return this->cap == 0;
 }
 
-void DropStrBuf(struct StrBufState *this) {
+static void Drop(struct StrBufState *this) {
   if (!IsEmbedded(this)) {
     free(this->ptr);
   }
@@ -98,6 +98,8 @@ static void Repr(void *repr, struct StrBufState *out) {
 }
 
 NAMESPACE(StrBuf) StrBuf = {
+    .Init = Init,
+    .Drop = Drop,
     .Append = Append,
     .FmtWrite = FmtWrite,
     .View = View,
