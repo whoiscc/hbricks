@@ -3,6 +3,11 @@
 #include <assert.h>
 #include <math.h>
 
+#include <lua.h>  // test include
+#include <lauxlib.h>
+#include <lualib.h>
+#include <string.h>
+
 #include "Lib/Polyfill.h"
 
 const struct GameConfig default_game_config = {
@@ -27,6 +32,8 @@ struct GameState {
   double ball_y;
   double ball_vx;
   double ball_vy;
+
+  lua_State *L;  // test
 };
 
 STATIC_ASSERT(state_size, sizeof(struct GameState) <= SIZEOF_GameState);
@@ -53,11 +60,19 @@ struct GameState *InitGame(uint8_t *mem, const struct GameConfig *config) {
   state->ball_vy = -1;
   NormalizeBallV(state, config->speed);
 
+  state->L = luaL_newstate();  // test
+  luaL_openlibs(state->L);
+  char source_line[] = "print(\"Hello, Lua!\")";
+  int err = luaL_loadbuffer(state->L, source_line, strlen(source_line), "line")
+      || lua_pcall(state->L, 0, 0, 0);
+  assert(!err);
+
   return state;
 }
 
 void DropGame(struct GameState *state) {
   //
+  lua_close(state->L);
 }
 
 static int IsOver(const struct GameState *state) {
